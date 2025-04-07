@@ -169,7 +169,8 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">Trang web bán hàng thời trang nhóm 17</div>
+					<div class="left-top-bar">
+					</div>
 
 					
 				</div>

@@ -1,3 +1,9 @@
+<%@page import="model.User"%>
+<%@page import="model.GioHang"%>
+<%@page import="java.util.List"%>
+<%@page import="Reponsitory.Laydulieuchonguoidung"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +40,52 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+.icon-header-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none; /* Ẩn menu mặc định */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 8px 0;
+}
+
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.icon-header-dropdown:hover .dropdown-menu {
+    display: block; /* Hiển thị menu khi hover */
+}
+
+</style>
 </head>
 <body class="animsition">
 	
@@ -42,41 +94,50 @@
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
-			
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Web bán hàng thời trang phong cách 
+					</div>
+
+				
+				</div>
+			</div>
+
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					<a href="Laydulieusanpham" class="logo">
+						<img src="assetsquantri/img/logo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Trang chủ</a>
+								<a href="Laydulieusanpham">Trang chủ</a>
 								 
 							</li>
 
 							<li >
-								<a href="product.html">Cửa hàng</a>
+								<a href="Cuahang">Cửa hàng</a>
 							</li>
 
 							<li  class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Giỏ hàng</a>
+								<a href="Giohang">Giỏ hàng</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.jsp">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">Giới thiệu</a>
+								<a href="about.jsp">Giới thiệu</a>
 							</li>
 
 							<li class="active-menu">
-								<a href="contact.html">Liên hệ</a>
+								<a href="contact.jsp">Liên hệ</a>
 							</li>
 						</ul>
 					</div>	
@@ -87,13 +148,50 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+						<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+						<div
+							<%Laydulieuchonguoidung lgn = new Laydulieuchonguoidung();
+List<GioHang> gh = lgn.LayHetThongTinGioHang();
+HttpSession tk = request.getSession(false);
+List<User> user = (List<User>) tk.getAttribute("Ghinhotaikhoan");
+int soluong = 0;
+float tongTien = 0;
+if (user != null) {
+	for (GioHang gioHang : gh) {
+		for (User u : user)
+			if (u.getMaTaiKhoan() == gioHang.getMaNguoiDung()) {
+				soluong += gioHang.getSoLuong();
+				tongTien += gioHang.getGia();
+			}
+	}
+
+}%>
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+							data-notify="<%=soluong%>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
+
+						<div class="icon-header-dropdown">
+							<a href="#"
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+								<i class="fa fa-user"></i>
+							</a>
+
+							<!-- Thẻ con chứa thông tin cá nhân và đơn hàng -->
+							<div class="dropdown-menu">
+								<ul>
+									<li><a href="Thongtincanhan.jsp">Thông tin cá nhân</a></li>
+									<li><a href="Thongtindonhangdamua.jsp">Đơn hàng</a></li>
+									<li><a href="Dangxuat">Đăng xuất</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
 					</div>
 				</nav>
 			</div>	
@@ -103,7 +201,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="Laydulieusanpham"><img src="assetsquantri/img/logo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -112,13 +210,45 @@
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
+				<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
+						<div
+							<%
+if (user != null) {
+	for (GioHang gioHang : gh) {
+		for (User u : user)
+			if (u.getMaTaiKhoan() == gioHang.getMaNguoiDung()) {
+				soluong += gioHang.getSoLuong();
+				tongTien += gioHang.getGia();
+			}
+	}
+
+}%>
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+							data-notify="<%=soluong%>">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+
+
+						<div class="icon-header-dropdown">
+							<a href="#"
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+								<i class="fa fa-user"></i>
+							</a>
+
+							<!-- Thẻ con chứa thông tin cá nhân và đơn hàng -->
+							<div class="dropdown-menu">
+								<ul>
+									<li><a href="Thongtincanhan.jsp">Thông tin cá nhân</a></li>
+									<li><a href="Thongtindonhangdamua.jsp">Đơn hàng</a></li>
+									<li><a href="Dangxuat">Đăng xuất</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
 			</div>
 
 			<!-- Button show menu -->
@@ -135,34 +265,17 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Miễn phí giao hàng cho đơn từ $100
+						Trang web bán thời trang của tuấn
 					</div>
 				</li>
 
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Trợ giúp & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Tài khoản của tôi
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							VN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
-					</div>
+			
 				</li>
 			</ul>
 
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.html">Trang chủ</a>
+					<a href="Laydulieusanpham">Trang chủ</a>
 					
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -170,23 +283,23 @@
 				</li>
 
 				<li>
-					<a href="product.html">Cửa hàng</a>
+					<a href="Cuahang">Cửa hàng</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Giỏ hàng</a>
+					<a href="Giohang" class="label1 rs1" data-label1="hot">Giỏ hàng</a>
 				</li>
 
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="blog.jsp">Blog</a>
 				</li>
 
 				<li>
-					<a href="about.html">Giới thiệu</a>
+					<a href="about.jsp">Giới thiệu</a>
 				</li>
 
 				<li>
-					<a href="contact.html">Liên hệ</a>
+					<a href="contact.jsp">Liên hệ</a>
 				</li>
 			</ul>
 		</div>
@@ -307,13 +420,13 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
+					<form action="Emailweb" method="post">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							Để lại tin nhắn cho chúng tôi
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email" value="ntuan4753@gmail.com">
 							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 						</div>
 
@@ -326,7 +439,22 @@
 						</button>
 					</form>
 				</div>
-
+				<%
+				
+				String guiMailThanhCong = (String) request.getAttribute("guimailthanhcong");
+				String guiMailThatBai = (String) request.getAttribute("guimailthatbai");
+				if(guiMailThanhCong != null){
+				%>
+				<script>
+				alert("Gửi mail thành công roài hehe");
+				</script>
+				
+				<%} if(guiMailThatBai != null){%>
+				<script>
+				alert("Gửi mail thất bạn cho tún roài huhu");
+				</script>
+				
+				<%} %>
 				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
 					<div class="flex-w w-full p-b-42">
 						<span class="fs-18 cl5 txt-center size-211">
@@ -339,7 +467,7 @@
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+								Trường Đại Học Công Nghiệp Hà Nội
 							</p>
 						</div>
 					</div>
@@ -355,7 +483,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
+								0376998401
 							</p>
 						</div>
 					</div>
@@ -371,7 +499,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
+								ntuan4753@gmail.com
 							</p>
 						</div>
 					</div>
@@ -382,9 +510,9 @@
 	
 	
 	<!-- Map -->
-	<div class="map">
+	<!-- <div class="map">
 		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-	</div>
+	</div> -->
 
 
 
