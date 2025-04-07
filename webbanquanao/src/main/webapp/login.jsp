@@ -46,7 +46,7 @@
                         </div>
                     </form>
                     <div class="auth-forgot-password">
-                        <a href="#">Forfot Password</a>
+                        <a href="#">Forot Password</a>
                     </div>
                 </div>
             </div>
