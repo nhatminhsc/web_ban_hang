@@ -473,7 +473,7 @@ button.add:hover {
 						<th><%=baiViet.getThoiGian() %></th>
 						<th>
 						<form action="Xoabaiviet" method="post">
-						<input type="text" name="xoaBaiViet" value="<%=baiViet.getMaBaiViet()%>">
+						<input type="hidden" name="xoaBaiViet" value="<%=baiViet.getMaBaiViet()%>">
 						<button class="action-btn delete-btn" onclick="thongbao()">Xóa</button>
 						</form>
 						</th>

@@ -1,4 +1,4 @@
-<%@page import="model.SanPham"%>
+ <%@page import="model.SanPham"%>
 <%@page import="java.util.List"%>
 <%@page import="Reponsitory.LaydulieuReponsitory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
