@@ -11,7 +11,12 @@
 </head>
 <body>
 
+<<<<<<< HEAD
     <!-- Form without bootstrap -->
+=======
+    <!-- Form without bootstrap đã sử thử và thất bại
+    i want to sleep-->
+>>>>>>> 2013ee0 (iu hiên)
     <div class="auth-wrapper">
         <div class="auth-container">
             <div class="auth-action-left">
