@@ -111,20 +111,15 @@ body {
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">Trang web bán hàng thời trang nhóm 17
-					</div>
+			<!-- <div class="top-bar"> -->
+				
+			<!-- </div> -->
 
-					
-				</div>
-			</div>
-
-			<div class="wrap-menu-desktop how-shadow1">
+			<!-- <div class="wrap-menu-desktop how-shadow1"> -->
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="Laydulieusanpham" class="logo"> <img src="assetsquantri/img/logo.png"
+					<a href="Laydulieusanpham" class="logo"> <img src="assetsquantri/img/aaaaaaaaaaaaaaaaaaaaa.jpg"
 						alt="IMG-LOGO">
 					</a>
 

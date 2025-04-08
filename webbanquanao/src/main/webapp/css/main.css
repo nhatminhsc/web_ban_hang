@@ -270,7 +270,7 @@
 }
 
 .main-menu > li > a {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   color: #333;
   padding: 5px 0px;
@@ -2032,7 +2032,7 @@ input.num-product::-webkit-inner-spin-button {
 .cl4 {color: #999;}
 .cl5 {color: #222;}
 .cl6 {color: #888;}
-.cl7 {color: #b2b2b2;}
+.cl7 {color:  #fff;}
 .cl8 {color: #555;}
 .cl9 {color: #aaa;}
 .cl10 {color: #1d1d1d;}
@@ -2080,10 +2080,11 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .stext-107 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  line-height: 1.923;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px; /* tăng nhẹ kích thước */
+  line-height: 1.8; /* giảm nhẹ so với 1.923 cho đều */
 }
+
 
 .stext-108 {
   font-family: Poppins-Light;
