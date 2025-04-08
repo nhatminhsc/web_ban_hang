@@ -96,9 +96,9 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
+					<!-- <div class="left-top-bar">
 						Web bán hàng thời trang phong cách 
-					</div>
+					</div> -->
 
 				
 				</div>
@@ -426,7 +426,7 @@ if (user != null) {
 						</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email" value="ntuan4753@gmail.com">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email" value="nguyenvana@gmail.com">
 							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
 						</div>
 
@@ -467,7 +467,7 @@ if (user != null) {
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Trường Đại Học Công Nghiệp Hà Nội
+								379 Hudson Street, Floor 8, New York, NY 10014, USA
 							</p>
 						</div>
 					</div>
@@ -483,7 +483,7 @@ if (user != null) {
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								0376998401
+								18008098
 							</p>
 						</div>
 					</div>
@@ -499,7 +499,7 @@ if (user != null) {
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								ntuan4753@gmail.com
+								dotanhung0505@gmail.com
 							</p>
 						</div>
 					</div>
@@ -590,7 +590,7 @@ if (user != null) {
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Có bất kì câu hỏi nào? Hãy đến cửa hàng chúng tôi tại 8th floor, 379 Hudson St, New York, NY 10018 hoặc gọi đến số (+84) 96 716 6879
+						Có bất kì câu hỏi nào? Hãy đến cửa hàng chúng tôi tại 379 Hudson Street, Floor 8, New York, NY 10014, USA 10018 hoặc gọi đến số 18008098
 					</p>
 
 					<div class="p-t-27">
