@@ -111,20 +111,19 @@ body {
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
-<<<<<<< HEAD
+
 			<!-- <div class="top-bar"> -->
 				
 			<!-- </div> -->
-=======
-			<div class="top-bar">
+
+			<!-- <div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
 					</div>
 
 					
 				</div>
-			</div>
->>>>>>> a2506032ac8dff69c0fba98712b45804290388e7
+			</div> -->
 
 			<!-- <div class="wrap-menu-desktop how-shadow1"> -->
 				<nav class="limiter-menu-desktop container">
