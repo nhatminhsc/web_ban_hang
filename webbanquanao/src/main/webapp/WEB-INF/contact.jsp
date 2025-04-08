@@ -1,7 +1,5 @@
 <%@page import="model.User"%>
 <%@page import="model.GioHang"%>
-<%@page import="Reponsitory.LaydulieuReponsitory"%>
-<%@page import="model.BaiViet"%>
 <%@page import="java.util.List"%>
 <%@page import="Reponsitory.Laydulieuchonguoidung"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bài viết</title>
+	<title>Liên hệ</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -50,6 +48,42 @@
 .d-block {
     display: block;
 }
+.icon-header-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none; /* Ẩn menu mặc định */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 8px 0;
+}
+
+.dropdown-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.icon-header-dropdown:hover .dropdown-menu {
+    display: block; /* Hiển thị menu khi hover */
+}
 
 </style>
 </head>
@@ -62,7 +96,11 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Web bán hàng thời trang phong cách 
+					</div>
 
+				
 				</div>
 			</div>
 
@@ -70,8 +108,8 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+					<a href="Laydulieusanpham" class="logo">
+						<img src="assetsquantri/img/logo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -86,11 +124,11 @@
 								<a href="Cuahang">Cửa hàng</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
+							<li  class="label1" data-label1="hot">
 								<a href="Giohang">Giỏ hàng</a>
 							</li>
 
-							<li class="active-menu" >
+							<li>
 								<a href="blog.jsp">Blog</a>
 							</li>
 
@@ -98,7 +136,7 @@
 								<a href="about.jsp">Giới thiệu</a>
 							</li>
 
-							<li>
+							<li class="active-menu">
 								<a href="contact.jsp">Liên hệ</a>
 							</li>
 						</ul>
@@ -110,32 +148,34 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
+						<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
 						<div
-						<%
-						Laydulieuchonguoidung lgn = new Laydulieuchonguoidung();
-							List<GioHang> gh = lgn.LayHetThongTinGioHang();
-							HttpSession tk = request.getSession(false);
-							List<User> user = (List<User>) tk.getAttribute("Ghinhotaikhoan");
-							
-								int soluong = 0;
-								float tongTien = 0;
-								if(user != null){
-								for(GioHang gioHang:gh){
-									for(User u : user)
-										if(u.getMaTaiKhoan()==gioHang.getMaNguoiDung()){
-									soluong += gioHang.getSoLuong();
-									tongTien += gioHang.getGia();
-										}
-								}
-							}
-							
-							
-						%>
+							<%Laydulieuchonguoidung lgn = new Laydulieuchonguoidung();
+List<GioHang> gh = lgn.LayHetThongTinGioHang();
+HttpSession tk = request.getSession(false);
+List<User> user = (List<User>) tk.getAttribute("Ghinhotaikhoan");
+int soluong = 0;
+float tongTien = 0;
+if (user != null) {
+	for (GioHang gioHang : gh) {
+		for (User u : user)
+			if (u.getMaTaiKhoan() == gioHang.getMaNguoiDung()) {
+				soluong += gioHang.getSoLuong();
+				tongTien += gioHang.getGia();
+			}
+	}
+
+}%>
 							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
 							data-notify="<%=soluong%>">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
-						
+
+
 						<div class="icon-header-dropdown">
 							<a href="#"
 								class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
@@ -152,6 +192,7 @@
 							</div>
 						</div>
 					</div>
+					</div>
 				</nav>
 			</div>	
 		</div>
@@ -160,50 +201,54 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="Laydulieusanpham"><img src="assetsquantri/img/logo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m">
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<%
-				if (user != null) {
-					for (GioHang gioHang : gh) {
-						for (User u : user)
-					if (u.getMaTaiKhoan() == gioHang.getMaNguoiDung()) {
-						soluong += gioHang.getSoLuong();
-						tongTien += gioHang.getGia();
-					}
-					}
+				<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
 
-				}
-				%>
-				<div
-					class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-					data-notify="<%=soluong%>">
-					<i class="zmdi zmdi-shopping-cart"></i>
-				</div>
+						<div
+							<%
+if (user != null) {
+	for (GioHang gioHang : gh) {
+		for (User u : user)
+			if (u.getMaTaiKhoan() == gioHang.getMaNguoiDung()) {
+				soluong += gioHang.getSoLuong();
+				tongTien += gioHang.getGia();
+			}
+	}
+
+}%>
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+							data-notify="<%=soluong%>">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
 
 
-				<div class="icon-header-dropdown">
-					<a href="#"
-						class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"> <i
-						class="fa fa-user"></i>
-					</a>
+						<div class="icon-header-dropdown">
+							<a href="#"
+								class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+								<i class="fa fa-user"></i>
+							</a>
 
-					<!-- Thẻ con chứa thông tin cá nhân và đơn hàng -->
-					<div class="dropdown-menu">
-						<ul>
-							<li><a href="Thongtincanhan.jsp">Thông tin cá nhân</a></li>
-							<li><a href="Thongtindonhangdamua.jsp">Đơn hàng</a></li>
-							<li><a href="Dangxuat">Đăng xuất</a></li>
-						</ul>
+							<!-- Thẻ con chứa thông tin cá nhân và đơn hàng -->
+							<div class="dropdown-menu">
+								<ul>
+									<li><a href="Thongtincanhan.jsp">Thông tin cá nhân</a></li>
+									<li><a href="Thongtindonhangdamua.jsp">Đơn hàng</a></li>
+									<li><a href="Dangxuat">Đăng xuất</a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 
 			<!-- Button show menu -->
@@ -220,28 +265,11 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Miễn phí giao hàng cho đơn từ $100
+						Trang web bán thời trang của tuấn
 					</div>
 				</li>
 
-				<li>
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Trợ giúp & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Tài khoản của tôi
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							VN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							USD
-						</a>
-					</div>
+			
 				</li>
 			</ul>
 
@@ -287,7 +315,7 @@
 					<button class="flex-c-m trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="plh3" type="text" name="search" placeholder="Tìm kiếm...">
+					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
 		</div>
@@ -380,51 +408,113 @@
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-02.jpg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Blog
+			Liên hệ
 		</h2>
 	</section>	
 
 
 	<!-- Content page -->
-	<section class="bg0 p-t-62 p-b-60">
-    <div class="container">
-        <div class="row">
-            <!-- Bài viết -->
-            <div class="col-lg-6 col-md-12 mb-4">
-                <img src="images/anhbaiviet.jpg" alt="Ảnh minh họa" class="img-fluid rounded">
-            </div>
-            <div class="col-lg-6 col-md-12 d-flex align-items-center">
-            
-                <div>
-                <%
-            LaydulieuReponsitory lg = new LaydulieuReponsitory();
-            List<BaiViet> baiViet = lg.LayThongTinBaiViet();
-            for(BaiViet b : baiViet){
-            %>
-                    <h2 class="mb-3"><%=b.getTenBai() %></h2>
-                    <p>
-                        Các mã giảm giá sẽ được chúng tui cung cấp trong bài viết..
-                    </p>
-                    
-                    <div id="extra-content" class="d-none">
-                        <p>
-                            <%=b.getNoiDung() %>
-                        </p>
-                    </div>
-                    <%} %>
-                    <button id="toggle-btn" class="btn btn-primary">Xem thêm</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</section>
+	<section class="bg0 p-t-104 p-b-116">
+		<div class="container">
+			<div class="flex-w flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+					<form action="Emailweb" method="post">
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							Để lại tin nhắn cho chúng tôi
+						</h4>
 
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Địa chỉ email" value="ntuan4753@gmail.com">
+							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+						</div>
 
+						<div class="bor8 m-b-30">
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="Chúng tôi có thể giúp gì cho bạn?"></textarea>
+						</div>
+
+						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+							Gửi
+						</button>
+					</form>
+				</div>
+				<%
+				
+				String guiMailThanhCong = (String) request.getAttribute("guimailthanhcong");
+				String guiMailThatBai = (String) request.getAttribute("guimailthatbai");
+				if(guiMailThanhCong != null){
+				%>
+				<script>
+				alert("Gửi mail thành công roài hehe");
+				</script>
+				
+				<%} if(guiMailThatBai != null){%>
+				<script>
+				alert("Gửi mail thất bạn cho tún roài huhu");
+				</script>
+				
+				<%} %>
+				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
+					<div class="flex-w w-full p-b-42">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Địa chỉ
+							</span>
+
+							<p class="stext-115 cl6 size-213 p-t-18">
+								Trường Đại Học Công Nghiệp Hà Nội
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full p-b-42">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-phone-handset"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Số điện thoại
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								0376998401
+							</p>
+						</div>
+					</div>
+
+					<div class="flex-w w-full">
+						<span class="fs-18 cl5 txt-center size-211">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+
+						<div class="size-212 p-t-2">
+							<span class="mtext-110 cl2">
+								Thư điện tử
+							</span>
+
+							<p class="stext-115 cl1 size-213 p-t-18">
+								ntuan4753@gmail.com
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
 	
-		
+	
+	<!-- Map -->
+	<!-- <div class="map">
+		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+	</div> -->
+
+
 
 		<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -571,22 +661,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 
-<script>
 
-document.getElementById('toggle-btn').addEventListener('click', function () {
-    const extraContent = document.getElementById('extra-content');
-    if (extraContent.classList.contains('d-none')) {
-        extraContent.classList.remove('d-none');
-        extraContent.classList.add('d-block');
-        this.textContent = 'Ẩn bớt'; // Thay đổi chữ trên nút
-    } else {
-        extraContent.classList.remove('d-block');
-        extraContent.classList.add('d-none');
-        this.textContent = 'Xem thêm'; // Quay lại chữ ban đầu
-    }
-});
-
-</script>
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -630,6 +705,9 @@ document.getElementById('toggle-btn').addEventListener('click', function () {
 			})
 		});
 	</script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
