@@ -120,7 +120,7 @@
 }
 
 .header-v4 .container-menu-desktop {
-  height: 124px;
+  height: 84px;
 }
 
 
@@ -129,6 +129,7 @@
 .top-bar {
   height: 40px;
   background-color: #222;
+  display: none;
 }
 
 /*---------------------------------------------*/
@@ -185,6 +186,9 @@
   -o-transition: height 0.3s, background-color 0.3s;
   -moz-transition: height 0.3s, background-color 0.3s;
   transition: height 0.3s, background-color 0.3s;
+  
+  box-shadow: initial !important;
+  top: 0px !important;
 }
 
 .header-v2 .wrap-menu-desktop {

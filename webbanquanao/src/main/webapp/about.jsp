@@ -446,13 +446,13 @@ Nhìn chung, website bán hàng thời trang không chỉ là một nơi mua s�
 						</p>
 
 						<div class="bor16 p-l-29 p-b-9 m-t-22">
-							<p class="stext-114 cl6 p-r-40 p-b-11">
+							<!-- <p class="stext-114 cl6 p-r-40 p-b-11">
 								Nhất định tui sẽ được A môn java web
 							</p>
 
 							<span class="stext-111 cl8">
 								- Nguyễn Ngọc Tuấn -
-							</span>
+							</span> -->
 						</div>
 					</div>
 				</div>
