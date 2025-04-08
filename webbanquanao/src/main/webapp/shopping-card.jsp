@@ -283,7 +283,7 @@ h2 {
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">Trang nhóm bán hàng thời trang nhóm 17
+					<div class="left-top-bar">
 					</div>
 
 					
